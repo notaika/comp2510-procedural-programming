@@ -53,7 +53,7 @@ int main(void)
     int b = 0;
 
     printf("\n== Data Type Sizes ==\n");
-    // dataTypeSizes();
+    dataTypeSizes();
 
     printf("\n== Bitwise AND (&) ==\n");
     bitwiseAnd();

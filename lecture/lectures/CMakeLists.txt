@@ -21,3 +21,8 @@ add_executable(switch week_two/switch.c)
 
 # week 4
 add_executable(pointers week_four/pointers.c)
+
+# week 5
+add_executable(pointersTwo week_five/pointersTwo.c)
+add_executable(hesamExamples week_five/hesamExamples.c)
+add_executable(arrayTransversal week_five/arrayTransversals.c)

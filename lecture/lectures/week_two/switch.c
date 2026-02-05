@@ -37,17 +37,5 @@ int main(void)
 {
     gradeChecker();
 
-    int count = 5;
-    while () (count = 5; count > 0; count--)
-    {
-        if (count == 3)
-        {
-            printf("hello");
-            break;
-        }
-        count--;
-    }
-
-
     return 0;
 }
