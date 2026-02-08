@@ -5,11 +5,7 @@
 // Task B: Find the first occurrence of target in str.
 // Return the index, or -1 if not found.
 int find_char(const char *str, char target) {
-    // TODO (use pointer arithmetic)
-    //  - use pointer to traverse string (it gets value)
-    //  - if char matches target, return it (--ptr);
-    const char *ptr = str;
-    int index = 0;
+    const char *ptr = str; // creates a second pointer that points to the exact same start location as str
 
     while (*ptr != '\0')
     {
@@ -18,11 +14,8 @@ int find_char(const char *str, char target) {
             return (int) (ptr - str);
         }
 
-        printf("char at index %d: %c\n", index, *ptr);
         ptr++;
-        index++;
     }
-
     return -1;
 }
 
@@ -30,45 +23,50 @@ int find_char(const char *str, char target) {
 // Return the index of the match, or -1 if not found.
 // Edge case: if substr is empty (""), return 0.
 int find_substring(const char *str, const char *substr) {
-    // TODO (use pointer arithmetic)
-    //  - handle edge cases
-
     // handle empty substring case
     if (*substr == '\0')
     {
         return 0;
     }
 
-    const char *ptrMain = str;
+    const char *ptr_str = str;
 
-    printf("Address of pointer: %p\n", ptrMain);
-    printf("Value at pointer: %c\n", *ptrMain);
+    while (*ptr_str != '\0')
+    {
+        const char *ptr_cursor = ptr_str; // cursor for string
+        const char *ptr_subcur = substr; // cursor for substring
 
-    ptrMain++;
+        /*
+        * if and while the characters match, and you haven't reached end of word
+        * and haven't reached end of substring... move the cursors
+        */
+        while (*ptr_cursor == *ptr_subcur &&
+            *ptr_cursor != '\0' &&
+            *ptr_subcur != '\0')
+        {
+            ptr_cursor++;
+            ptr_subcur++;
+        }
 
-    printf("Address of pointer: %p\n", ptrMain);
-    printf("Value at pointer: %c\n", *ptrMain);
+        // if we reach the end of substring, return index
+        if (*ptr_subcur == '\0')
+        {
+            return (int) (ptr_str - str);
+        }
 
-    // Address at ptrMain: 0x10026cb10
-    // Address after ptrMain++: 0x10026cb11
-
-
-    /*
-     * char* str; <- means that this is of data type pointer of main string
-     * char* substr; <- means that this is of data type pointer of substring we searching in main string for
-     */
-
+        ptr_str++;
+    }
 
     return -1;
 }
 
 int main(void) {
-    // printf("find_char(\"hello\", 'l') = %d (expect 2)\n", find_char("hello", 'l'));
-    // printf("find_char(\"hello\", 'z') = %d (expect -1)\n", find_char("hello", 'z'));
+    printf("find_char(\"hello\", 'l') = %d (expect 2)\n", find_char("hello", 'l'));
+    printf("find_char(\"hello\", 'z') = %d (expect -1)\n", find_char("hello", 'z'));
 
     printf("find_substring(\"banana\", \"na\") = %d (expect 2)\n", find_substring("banana", "na"));
-    // printf("find_substring(\"banana\", \"xy\") = %d (expect -1)\n", find_substring("banana", "xy"));
-    // printf("find_substring(\"banana\", \"\") = %d (expect 0)\n", find_substring("banana", ""));
+    printf("find_substring(\"banana\", \"xy\") = %d (expect -1)\n", find_substring("banana", "xy"));
+    printf("find_substring(\"banana\", \"\") = %d (expect 0)\n", find_substring("banana", ""));
 
     return 0;
 }
