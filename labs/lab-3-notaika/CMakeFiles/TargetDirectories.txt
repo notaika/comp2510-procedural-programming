@@ -1,0 +1,3 @@
+/Users/aika/Documents/areas/cst/202610_t2/comp2510/labs/lab-3-notaika/CMakeFiles/lab_3_notaika.dir
+/Users/aika/Documents/areas/cst/202610_t2/comp2510/labs/lab-3-notaika/CMakeFiles/edit_cache.dir
+/Users/aika/Documents/areas/cst/202610_t2/comp2510/labs/lab-3-notaika/CMakeFiles/rebuild_cache.dir

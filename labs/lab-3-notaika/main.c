@@ -4,14 +4,19 @@
 void fail_sync(int vitality)
 {
     vitality += 20;
+    printf("Fail Sync (during): ");
+    report_status(vitality);
 }
 
 int main(void)
 {
     int vitality = 50;
 
+    printf("Fail Sync (before): ");
+    report_status(vitality);
+
     fail_sync(vitality);
-    printf("Fail Sync Energy: ");
+    printf("Fail Sync (after): ");
     report_status(vitality);
 
     sync_energy(&vitality);
