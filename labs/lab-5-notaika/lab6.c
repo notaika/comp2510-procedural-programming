@@ -17,17 +17,17 @@ struct Product
 // Return 1 if a swap happened, otherwise 0.
 int order_by_total_value(struct Product* a, struct Product* b)
 {
-    double val1 = a->price * a->quantity;
-    double val2 = b->price * b->quantity;
+    const double a_value = a->price * a->quantity;
+    const double b_value = b->price * b->quantity;
 
-    if (val1 > val2 || (val1 == val2 && a->id > b->id))
+    if (a_value > b_value)
     {
-        struct Product temp = *a;
+        const struct Product temp = *a;
         *a = *b;
         *b = temp;
+
         return 1;
     }
-
     return 0;
 }
 
@@ -36,21 +36,28 @@ int order_by_total_value(struct Product* a, struct Product* b)
 // If there's a tie, return the first one.
 const struct Product* find_most_expensive(const struct Product* products, int count)
 {
-    if (count == 0 || products == NULL)
+    // if array is empty, return null
+    if (count <= 0)
     {
         return NULL;
     }
 
-    const struct Product *prod = &products[0];
+    // start at index 1
+    const struct Product *most_expensive = products;
 
-    for (int i = 1; i < count; i++)
+    const struct Product *cursor = products;
+    const struct Product *end = products + count;
+
+    while (cursor < end)
     {
-        if (products[i].price > prod->price)
+        if (cursor->price > most_expensive->price)
         {
-            prod = &products[i];
+            most_expensive = cursor;
         }
+        cursor++;
     }
-    return prod;
+
+    return most_expensive;
 }
 
 int main(void)
