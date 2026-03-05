@@ -20,15 +20,15 @@
  * @param arrSize
  * @return
  */
-int cumulativeSum(int numArr[], size_t arrSize)
+int cumulativeSum(int numArr[], int arrSize)
 {
     // don't declare
     int sumOfArray = 0;
     printf("Array size: %zu\n", arrSize);
 
-    for (size_t i = 0; i < arrSize; i++)
+    for (int i = 0; i < arrSize; i++)
     {
-        printf("Loop %zu: index = %zu | value = %d\n", i, i, numArr[i]);
+        printf("Loop %d: index = %d | value = %d\n", i, i, numArr[i]);
         sumOfArray += numArr[i];
     }
 

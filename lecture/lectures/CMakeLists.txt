@@ -26,3 +26,7 @@ add_executable(pointers week_four/pointers.c)
 add_executable(pointersTwo week_five/pointersTwo.c)
 add_executable(hesamExamples week_five/hesamExamples.c)
 add_executable(arrayTransversal week_five/arrayTransversals.c)
+
+# week 7
+add_executable(inClassActivity week_seven/activity_m07.c)
+add_executable(file_io week_seven/file_io.c)
