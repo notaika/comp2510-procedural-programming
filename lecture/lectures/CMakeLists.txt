@@ -30,6 +30,7 @@ add_executable(arrayTransversal week_five/arrayTransversals.c)
 # week 7
 add_executable(inClassActivity week_seven/activity_m07.c)
 add_executable(file_io week_seven/file_io.c)
+add_executable(io_prac week_seven/io_prac.c)
 
 # week 8
 add_executable(mem_alloc week_eight/mem_alloc.c)
