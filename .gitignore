@@ -1,1 +1,20 @@
+# --- CLion / JetBrains ---
+.idea/
+cmake-build-debug/
+cmake-build-release/
+*.iws
+*.iml
+
+# --- Compiled Binaries (Mac) ---
+*.out
+*.o
+*.a
+*.so
+*.dylib
+
+# --- Executable names ---
+my_lab
+a.out
+
+# --- macOS Junk ---
 .DS_Store

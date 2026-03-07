@@ -1,0 +1,85 @@
+name: Autograding Tests
+'on':
+- workflow_dispatch
+- repository_dispatch
+permissions:
+  checks: write
+  actions: read
+  contents: read
+jobs:
+  run-autograding-tests:
+    runs-on: ubuntu-latest
+    if: github.actor != 'github-classroom[bot]'
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    - name: Palindrome success
+      id: palindrome-success
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: Palindrome success
+        setup-command: gcc part1.c -o part1
+        command: "./part1"
+        input: deified
+        expected-output: Is a palindrome
+        comparison-method: contains
+        timeout: 10
+        max-score: 10
+    - name: Palindrome fail
+      id: palindrome-fail
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: Palindrome fail
+        setup-command: gcc part1.c -o part1
+        command: "./part1"
+        input: someinput
+        expected-output: Not a palindrome
+        comparison-method: contains
+        timeout: 10
+        max-score: 20
+    - name: Dungeon Move
+      id: dungeon-move
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: Dungeon Move
+        setup-command: gcc part2.c -o part2
+        command: "./part2"
+        input: WWD
+        expected-output: 'Final Position: (1, 2)'
+        comparison-method: contains
+        timeout: 10
+        max-score: 20
+    - name: Dungeon Trap
+      id: dungeon-trap
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: Dungeon Trap
+        setup-command: gcc part2.c -o part2
+        command: "./part2"
+        input: WTW
+        expected-output: TRAP HIT!
+        comparison-method: contains
+        timeout: 10
+        max-score: 20
+    - name: No Warning
+      id: no-warning
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: No Warning
+        setup-command: ''
+        command: gcc -Wall -Wextra -Werror part2.c -o part2
+        input: ''
+        expected-output: ''
+        comparison-method: exact
+        timeout: 10
+        max-score: 10
+    - name: Autograding Reporter
+      uses: classroom-resources/autograding-grading-reporter@v1
+      env:
+        PALINDROME-SUCCESS_RESULTS: "${{steps.palindrome-success.outputs.result}}"
+        PALINDROME-FAIL_RESULTS: "${{steps.palindrome-fail.outputs.result}}"
+        DUNGEON-MOVE_RESULTS: "${{steps.dungeon-move.outputs.result}}"
+        DUNGEON-TRAP_RESULTS: "${{steps.dungeon-trap.outputs.result}}"
+        NO-WARNING_RESULTS: "${{steps.no-warning.outputs.result}}"
+      with:
+        runners: palindrome-success,palindrome-fail,dungeon-move,dungeon-trap,no-warning
