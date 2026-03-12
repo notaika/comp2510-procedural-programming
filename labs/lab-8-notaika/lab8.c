@@ -46,9 +46,9 @@ SensorNode_t* create_node(int id, double temp, const char *loc) {
 // Task A: Append a node to the end of the linked list.
 void append_node(SensorNode_t **head, SensorNode_t *new_node) {
     // TODO: 1. If the list is empty (*head is NULL), set *head = new_node
-    if (*head == nullptr)
+    if (*head == nullptr) // <- safety check... list empty?
     {
-        *head = new_node;
+        *head = new_node; // make new_node the head
         return;
     }
 
@@ -61,28 +61,34 @@ void append_node(SensorNode_t **head, SensorNode_t *new_node) {
     }
 
     // TODO: 3. Set the last node's next pointer to new_node
-    curr_node->next = new_node;
+    curr_node->next = new_node; // prep for next linked node
 }
 
 // Task B: Debugging! Fix the 3 logic bugs in this function.
 int remove_sensor_by_id(SensorNode_t **head, int id) {
-    if (*head == NULL) return 0;
+    // 1. safety check??
+    if (*head == NULL)
+    {
+        return 0;
+    }
 
     SensorNode_t *current = *head;
-    SensorNode_t *previous = NULL;
+    SensorNode_t *previous = NULL; // cursor behind
 
-    while (current->next != NULL) {
-        // go to the node before the node we want to delete
+    // 2. need to access the pointer to the next node
+    while (current != NULL) {
+        // if true, target found
         if (current->device_id == id) {
-
-            // save node to delete in a temp pointer
+            // true? delete first node
             if (previous == NULL) {
-                *head = current->next;
+                *head = current->next; // change to point to the NEXT node
             }
             else {
+                // else, set prev node's "next node" ptr to node we want to delete
                 previous->next = current->next;
             }
 
+            free(current->location);
             free(current);
             return 1; // Successfully removed
         }
@@ -103,9 +109,10 @@ void print_list(const SensorNode_t *head) {
     if (head == NULL)
     {
         printf("List is empty.\n");
+        return;
     }
 
-    SensorNode_t *curr_node = head;
+    const SensorNode_t *curr_node = head;
     while (curr_node != NULL)
     {
         printf("[%d] %s: %.2f\n", curr_node->device_id, curr_node->location, curr_node->temperature);
@@ -116,6 +123,16 @@ void print_list(const SensorNode_t *head) {
 // Task D: Free all allocated memory.
 void free_list(SensorNode_t *head) {
     // TODO: Traverse the list safely
+    SensorNode_t *curr = head;
+
+    while (curr->next != nullptr)
+    {
+        SensorNode_t *temp = curr;
+        curr = curr->next;
+
+        free(temp->location);
+        free(temp);
+    }
     // TODO: Free the location string, THEN free the node
     // Hint: Save node->next in a temporary variable before freeing the node!
 }
@@ -139,8 +156,8 @@ int main(void) {
     // Test Task A (Debugging)
     printf("\nRemoving sensor 205... %s\n", remove_sensor_by_id(&head, 205) ? "Success" : "Failed");
 
-    // printf("\\n--- Updated Sensor List ---\\n");
-    // print_list(head);
+    printf("\n--- Updated Sensor List ---\n");
+    print_list(head);
 
     // Task D: Clean up memory
     free_list(head);

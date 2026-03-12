@@ -139,7 +139,12 @@ int save_budget_snacks(const char *filename,
         // filter
         if (snacks[i].price <= max_price)
         {
-            fprintf(fp, "%s|%s|%.2f|%d\n", snacks[i].name, snacks[i].location, snacks[i].price, snacks[i].calories);
+            if (count > 0)
+            {
+                fprintf(fp, "\n");
+            }
+
+            fprintf(fp, "%s|%s|%.2f|%d", snacks[i].name, snacks[i].location, snacks[i].price, snacks[i].calories);
             written_count++;
         }
     }
