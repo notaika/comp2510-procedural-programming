@@ -1,0 +1,14 @@
+typedef struct {
+    char name[50];
+    char location[50];
+    float price;
+    int calories;
+} Snack;
+
+TODO:
+    - <max_price> - float (%.2f)
+    - calories <- int
+    - '|' as field separator
+    - name and location may contain spaces
+    - assumption: no line will exceed 255 chars
+    - assumption: no name/loc will exceed 49 chars

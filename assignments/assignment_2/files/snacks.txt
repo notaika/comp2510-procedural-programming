@@ -1,0 +1,6 @@
+2.00
+Chocolate Chip Cookie|Library|1.99|250
+Fruit Cup|Starbucks|2.49|80
+Pretzel|Fuse Cafe|0.99|150
+Muffin|Tim Hortons|1.50|310
+Trail Mix|Teck Copper Cafe|2.99|180
