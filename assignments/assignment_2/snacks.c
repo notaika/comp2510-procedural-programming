@@ -139,7 +139,7 @@ int save_budget_snacks(const char *filename,
         // filter
         if (snacks[i].price <= max_price)
         {
-            if (count > 0)
+            if (written_count > 0)
             {
                 fprintf(fp, "\n");
             }

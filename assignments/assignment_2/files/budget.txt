@@ -1,4 +1,3 @@
-
 Chocolate Chip Cookie|Library|1.99|250
 Pretzel|Fuse Cafe|0.99|150
 Muffin|Tim Hortons|1.50|310
