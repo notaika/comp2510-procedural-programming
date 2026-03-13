@@ -1,12 +1,11 @@
-#include <stdio.h>
 #include <stdlib.h>
 
 #include "snacks.h"
 
 int main(void)
 {
-    char input_file[] = "./files/snacks.txt";
-    char output_file[] = "./files/budget.txt";
+    char input_file[] = "snacks.txt";
+    char output_file[] = "budget.txt";
 
     Snack *snackies;
     float max_price;
@@ -17,15 +16,6 @@ int main(void)
         return 1;
     }
 
-    // printf("%s", snackies->location);
-    printf("Number of snacks stored: %d\n", num_stored);
-
-    // test see array
-    for (int i = 0; i < num_stored; i++)
-    {;
-        printf("Snack Details: %s | %s | %.2f | %d\n", snackies[i].name, snackies[i].location, snackies[i].price, snackies[i].calories);
-    }
-
     int num_written = save_budget_snacks(output_file, snackies, num_stored, max_price);
     if (num_written == -1)
     {
@@ -33,7 +23,5 @@ int main(void)
     }
 
     free(snackies);
-
-    printf("%d\n", num_written);
     return 0;
 }

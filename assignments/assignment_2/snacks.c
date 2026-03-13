@@ -66,14 +66,12 @@ int load_snacks(const char *filename,
             }
         }
 
-        printf("Line: %d\n", stored);
         char *column = strtok(line, "|\n");
 
         // store name
         if (column != nullptr)
         {
             strcpy((*snacks)[stored].name, column);
-            printf("Name stored: %s\n", (*snacks)[stored].name);
         }
 
         // store location
@@ -81,7 +79,6 @@ int load_snacks(const char *filename,
         if (column != nullptr)
         {
             strcpy((*snacks)[stored].location, column);
-            printf("Location stored: %s\n", (*snacks)[stored].location);
         }
 
         // store price
@@ -90,7 +87,6 @@ int load_snacks(const char *filename,
         {
             float parse_price = atof(column);
             (*snacks)[stored].price = parse_price;
-            printf("Price: %.2f\n", (*snacks)->price);
         }
 
         // store calories
@@ -99,7 +95,6 @@ int load_snacks(const char *filename,
         {
             int parse_calories = atoi(column);
             (*snacks)[stored].calories = parse_calories;
-            printf("Calories: %d\n", (*snacks)->calories);
         }
 
         printf("\n");
